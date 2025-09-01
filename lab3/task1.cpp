@@ -3,7 +3,7 @@ using namespace std;
 
 class LinkedList {
 private:
-    struct ListNode {
+    class ListNode {
         int val;
         ListNode* next;
         ListNode(int x) : val(x), next(nullptr) {}
