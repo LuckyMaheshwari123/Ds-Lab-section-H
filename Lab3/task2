@@ -11,18 +11,27 @@ public:
     }
 };
 
-Node* merge(Node* h1, Node* h2) {
-    if (h1 == nullptr) return h2;
-    if (h2 == nullptr) return h1;
+ListNode* merge(Node* list1, Node* list2) {
+    Node dummy(0);  
+    Node* current = &dummy;
 
-    Node* temp = h1;
-    while (temp->next != nullptr) {
-        temp = temp->next;
+    while (list1 && list2) {
+        if (list1->val < list2->val) {
+            current->next = list1;
+            list1 = list1->next;
+        } else {
+            current->next = list2;
+            list2 = list2->next;
+        }
+        current = current->next;
     }
-    temp->next = h2;
 
-    return h1;
+   
+    current->next = list1 ? list1 : list2;
+
+    return dummy.next;
 }
+
 
 class LinkedList {
 public:
