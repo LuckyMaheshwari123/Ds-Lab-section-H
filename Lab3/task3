@@ -1,0 +1,96 @@
+#include<iostream>
+using namespace std;
+
+
+
+class Node{
+    public:
+    int data;
+    Node*next;
+    Node(int val){
+        data=val;
+        next=nullptr;
+        
+    }
+};
+
+class LL{
+    
+    Node*head;
+    public:
+    LL(){
+        head=nullptr;
+    }
+    Node* returnhead(){
+        return head;
+    }
+
+    void insertAtend(int val){
+        Node*newnode=new Node(val);
+        if(head==NULL){
+        
+        head=newnode;
+        return;
+
+        }
+        Node*temp=head;
+        while(temp->next!=nullptr){
+            temp=temp->next;
+        }
+        temp->next=newnode;
+    }
+
+    void print(){
+        Node*temp=head;
+        while(temp){
+            cout<<temp->data<<" ";
+            temp=temp->next;
+        }
+    }
+
+};
+
+Node* kreverse(Node* head, int k) {
+    if (!head || k <= 0) return head;
+
+    Node* current = head;
+    Node* previous = nullptr;
+    Node* next = nullptr;
+
+    int count = 0;
+    // Check if there are at least k nodes
+    Node* temp = head;
+    while (temp && count < k) {
+        temp = temp->next;
+        count++;
+    }
+    if (count < k) return head; // Not enough nodes to reverse
+
+    count = 0;
+    while (current && count < k) {
+        next = current->next;
+        current->next = previous;
+        previous = current;
+        current = next;
+        count++;
+    }
+
+    if (head) {
+        head->next = current; 
+    }
+
+    return previous; 
+}
+
+int main(){
+LL l1;
+l1.insertAtend(1);
+l1.insertAtend(2);
+l1.insertAtend(2);
+l1.insertAtend(1);
+l1.insertAtend(3);
+l1.print();
+
+
+
+}
