@@ -1,0 +1,75 @@
+#include <iostream>
+using namespace std;
+
+struct SinglyNode {
+    int data;
+    SinglyNode* next;
+    SinglyNode(int val) : data(val), next(nullptr) {}
+};
+
+struct DoublyNode {
+    int data;
+    DoublyNode* prev;
+    DoublyNode* next;
+    DoublyNode(int val) : data(val), prev(nullptr), next(nullptr) {}
+};
+
+DoublyNode* convertToDoubly(SinglyNode* head) {
+    if (!head) return nullptr;
+    DoublyNode* dhead = new DoublyNode(head->data);
+    DoublyNode* dcur = dhead;
+    SinglyNode* cur = head->next;
+    while (cur) {
+        DoublyNode* newNode = new DoublyNode(cur->data);
+        dcur->next = newNode;
+        newNode->prev = dcur;
+        dcur = newNode;
+        cur = cur->next;
+    }
+    return dhead;
+}
+
+SinglyNode* convertToCircular(SinglyNode* head) {
+    if (!head) return nullptr;
+    SinglyNode* cur = head;
+    while (cur->next) {
+        cur = cur->next;
+    }
+    cur->next = head;
+    return head;
+}
+
+void printSingly(SinglyNode* head, int count=10) {
+    SinglyNode* cur = head;
+    int c = 0;
+    while (cur && c < count) {
+        cout << cur->data << " ";
+        cur = cur->next;
+        c++;
+    }
+    cout << endl;
+}
+
+void printDoubly(DoublyNode* head) {
+    DoublyNode* cur = head;
+    while (cur) {
+        cout << cur->data << " ";
+        cur = cur->next;
+    }
+    cout << endl;
+}
+
+int main() {
+    SinglyNode* shead = new SinglyNode(1);
+    shead->next = new SinglyNode(2);
+    shead->next->next = new SinglyNode(3);
+    shead->next->next->next = new SinglyNode(4);
+
+    DoublyNode* dhead = convertToDoubly(shead);
+    printDoubly(dhead);
+
+    SinglyNode* chead = convertToCircular(shead);
+    printSingly(chead, 10);
+
+    return 0;
+}
