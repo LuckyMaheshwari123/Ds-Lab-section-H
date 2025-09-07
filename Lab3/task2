@@ -1,0 +1,87 @@
+#include<iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node* next;
+    Node(int data) {
+        this->data = data;
+        next = nullptr;
+    }
+};
+
+Node* merge(Node* h1, Node* h2) {
+    if (h1 == nullptr) return h2;
+    if (h2 == nullptr) return h1;
+
+    Node* temp = h1;
+    while (temp->next != nullptr) {
+        temp = temp->next;
+    }
+    temp->next = h2;
+
+    return h1;
+}
+
+class LinkedList {
+public:
+    Node* head;
+    LinkedList() {
+        head = nullptr;
+    }
+
+    ~LinkedList() {
+        Node* temp = head;
+        while (temp) {
+            Node* next = temp->next;
+            delete temp;
+            temp = next;
+        }
+    }
+
+    void insertAtFirst(int value) {
+        Node* newnode = new Node(value);
+        newnode->next = head;
+        head = newnode;
+    }
+
+    void insertAtEnd(int val) {
+        Node* newnode = new Node(val);
+        if (head == nullptr) {
+            head = newnode;
+        } else {
+            Node* temp = head;
+            while (temp->next != nullptr) {
+                temp = temp->next;
+            }
+            temp->next = newnode;
+        }
+    }
+
+    void printList(Node* node) {
+        while (node) {
+            cout << node->data << " ";
+            node = node->next;
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    LinkedList l1;
+    LinkedList l2;
+
+    l1.insertAtEnd(1);
+    l1.insertAtEnd(2);
+    l1.insertAtEnd(3);
+
+    l2.insertAtEnd(4);
+    l2.insertAtEnd(5);
+
+    Node* mergedHead = merge(l1.head, l2.head);
+
+    l1.printList(mergedHead);
+
+    return 0;
+}
