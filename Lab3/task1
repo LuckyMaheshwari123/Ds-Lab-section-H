@@ -1,0 +1,104 @@
+#include<iostream>
+using namespace std;
+class Node{
+    public:
+    int data;
+    Node*next;
+    Node(int val){
+        data=val;
+        next=nullptr;
+        
+    }
+};
+
+class LL{
+    
+    Node*head;
+    public:
+    LL(){
+        head=nullptr;
+    }
+    Node* returnhead(){
+        return head;
+    }
+
+    void insertAtend(int val){
+        Node*newnode=new Node(val);
+        if(head==NULL){
+        
+        head=newnode;
+        return;
+
+        }
+        Node*temp=head;
+        while(temp->next!=nullptr){
+            temp=temp->next;
+        }
+        temp->next=newnode;
+    }
+
+    void print(){
+        Node*temp=head;
+        while(temp){
+            cout<<temp->data<<" ";
+            temp=temp->next;
+        }
+    }
+
+};
+bool palindrome(Node*head){
+    Node*slow=head;
+    Node*fast=head;
+
+    //reach at middle
+    while(fast&&fast->next){
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+
+    //reverse 2nd half
+
+    Node*previous=nullptr;
+    Node*current=slow;
+    Node*next=nullptr;
+    while(current){
+        next=current->next;
+        current->next=previous;
+        previous=current;
+        current=next;
+    }
+
+    Node*firsthalf=head;
+    Node*sechalf=previous;
+    while(sechalf){
+        if(firsthalf->data!=sechalf->data){
+            return false;
+        }
+
+        firsthalf=firsthalf->next;
+        sechalf=sechalf->next;
+    
+    }
+    return true;
+
+    //compare the half
+
+}
+int main(){
+LL l1;
+l1.insertAtend(1);
+l1.insertAtend(2);
+l1.insertAtend(2);
+l1.insertAtend(1);
+l1.insertAtend(3);
+l1.print();
+Node*head=l1.returnhead();
+int n=palindrome(head);
+if(n==1){
+    cout<<"\nThe LL is palindrome"<<endl;
+}
+else{
+    cout<<"\nThe LL is not palindrome"<<endl;
+}
+
+}
