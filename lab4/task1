@@ -1,0 +1,36 @@
+#include<iostream>
+using namespace std;
+void linear(int arr[],int n,int key){
+  int found=0;
+  int element;
+  for(int i=0;i<n;i++){
+   if(arr[i]==key){
+    found=1;
+    element=i;
+    break;
+   }
+  }
+  if(found){
+    cout<<"element found at index "<<element<<endl;
+  }
+  else{
+    cout<<"element not found"<<endl;
+  }
+}
+int main(){
+    int n;
+    cout<<"how many elements in array you want to enter:";
+    cin>>n;
+    int *arr=new int[n];
+    cout<<"enter the elements respectively:";
+    for(int i=0;i<n;i++){
+     cin>>arr[i];
+    }
+
+    int key;
+    cout<<"enter element you want to search:";
+    cin>>key;
+
+    linear(arr,n,key);
+    delete[]arr;
+}
