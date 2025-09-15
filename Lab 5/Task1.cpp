@@ -2,7 +2,7 @@
 using namespace std;
 
 int factorial(int n){
-    if(n<1){
+    if(n<0){
         cout<<"negative factorial does not exit ";
         return -1;
     }
