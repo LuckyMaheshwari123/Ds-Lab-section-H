@@ -13,6 +13,8 @@ int factorial(int n){
 }
 
 int main() {
-    cout << factorial(17)<<endl;
+    int n;
+    cout<<"enter the number:";
+    cout << factorial(n)<<endl;
     return 0;
 }
