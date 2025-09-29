@@ -42,14 +42,31 @@ int del(){
     return arr[front++];
 }
 
+void print(){
+       for(int i=front;i<=back;i++){
+           cout<<arr[i]<<" ";
+       }
+   }
 };
+
+
+
 int main(){
     Quee q1;
     cout<<q1.isempty();
     q1.add(3);
+    q1.add(5);
+    q1.add(7);
     cout<<endl;
      cout<<q1.isempty();
      cout<<endl;
      cout<<q1.isfull();
+     cout<<endl;
+     q1.print();
+     cout<<endl;
+     int n=q1.del();
+     cout<<"deleted items is:"<<n;
+     cout<<endl;
+     q1.print();
 
 }
