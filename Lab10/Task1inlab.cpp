@@ -181,10 +181,10 @@ int main() {
     HospitalPQ pq;
     int arrival = 0;
 
-    pq.addPatient("John", 5, arrival++);
-    pq.addPatient("Alice", 9, arrival++);
-    pq.addPatient("Bob", 9, arrival++);
-    pq.addPatient("Mary", 3, arrival++);
+    pq.addPatient("Lucky", 5, arrival++);
+    pq.addPatient("Asad", 9, arrival++);
+    pq.addPatient("Babloo", 9, arrival++);
+    pq.addPatient("Muna", 3, arrival++);
 
     pq.displayAll();
 
@@ -192,7 +192,7 @@ int main() {
     Patient p = pq.getNextPatient();
     cout << p.name << " (Severity " << p.severity << ")\n";
 
-    pq.updateSeverity("Mary", 10);
+    pq.updateSeverity("Muna", 10);
 
     pq.displayAll();
 
